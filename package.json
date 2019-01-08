@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Simple webpack template",
   "main": "index.js",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
     "babel-loader": "^8.0.5",
@@ -24,7 +25,6 @@
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14"
   },
-  "devDependencies": {},
   "scripts": {
     "build": "webpack --config config/webpack.config.js --mode=production",
     "dev": "webpack-dev-server --config config/webpack.config.js --mode=development"
