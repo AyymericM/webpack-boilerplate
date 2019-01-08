@@ -2,8 +2,8 @@ const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
@@ -29,7 +29,7 @@ module.exports = {
         new CleanWebpackPlugin(['dist'], { root: path.resolve(__dirname, '../') }),
         new MiniCssExtractPlugin({
             filename: 'style.[contenthash].css',
-            chunkFilename: "[id].css"
+            chunkFilename: '[id].css'
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, '../src/index.html'),
@@ -53,15 +53,10 @@ module.exports = {
             {
                 test: /\.(sass|scss|css)$/,
                 use: [
-                    "style-loader",
+                    'style-loader',
                     MiniCssExtractPlugin.loader,
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: process.env.NODE_ENV === 'production'
-                        }
-                    },
-                    "sass-loader"
+                    'css-loader',
+                    'sass-loader'
                 ]
             }, {
                 test: /\.(jpg|png|svg|gif)$/,
