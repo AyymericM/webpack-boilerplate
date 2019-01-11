@@ -7,7 +7,6 @@ const webpackCommon = require('./webpack.common')
 
 const webpackProd = {
     mode: 'production',
-    entry: './src/index.js',
     optimization: {
         minimizer: [
             new UglifyJsPlugin({
