@@ -4,6 +4,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const webpackMerge = require('webpack-merge')
 const webpackCommon = require('./webpack.common')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const webpackProd = {
     mode: 'production',
@@ -18,10 +19,23 @@ const webpackProd = {
     },
     devtool: 'source-map',
     plugins: [
+        new MiniCssExtractPlugin({
+            filename: 'style.[contenthash].css',
+            chunkFilename: '[id].css'
+        }),
         new CleanWebpackPlugin(['dist'], { root: path.resolve(__dirname, '../') }),
     ],
     module: {
         rules: [
+            {
+                test: /\.(sass|scss|css)$/,
+                use: [
+                    'style-loader',
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'sass-loader'
+                ]
+            },
             {
                 test: /\.js$/,
                 exclude: /(node_modules)/,

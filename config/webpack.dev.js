@@ -14,6 +14,14 @@ const webpackDev = {
     module: {
         rules: [
             {
+                test: /\.(sass|scss|css)$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader',
+                ]
+            },
+            {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
                 use: {
