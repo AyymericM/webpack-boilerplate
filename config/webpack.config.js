@@ -21,6 +21,7 @@ module.exports = {
             new OptimizeCSSAssetsPlugin({})
         ]
     },
+    devtool: 'source-map',
     devServer: {
         contentBase: './dist',
         open: true
