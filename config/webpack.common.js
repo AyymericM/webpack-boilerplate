@@ -1,10 +1,6 @@
-const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
     entry: './src/index.js',
@@ -12,22 +8,8 @@ module.exports = {
         filename: 'bundle.[hash].js',
         path: path.resolve(__dirname, '../dist')
     },
-    optimization: {
-        minimizer: [
-            new UglifyJsPlugin({
-                cache: true,
-                parallel: true
-            }),
-            new OptimizeCSSAssetsPlugin({})
-        ]
-    },
     devtool: 'source-map',
-    devServer: {
-        contentBase: './dist',
-        open: true
-    },
     plugins: [
-        new CleanWebpackPlugin(['dist'], { root: path.resolve(__dirname, '../') }),
         new MiniCssExtractPlugin({
             filename: 'style.[contenthash].css',
             chunkFilename: '[id].css'
@@ -35,22 +17,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, '../src/index.html'),
             hash: true
-        }),
-        new webpack.HotModuleReplacementPlugin()
+        })
     ],
     module: {
         rules: [
-            {
-                test: /\.js$/,
-                exclude: /(node_modules)/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env'],
-                        minified: true
-                    }
-                }
-            },
             {
                 test: /\.(sass|scss|css)$/,
                 use: [
@@ -71,16 +41,6 @@ module.exports = {
                 options: {
                     outputPath: path.join('static', 'fonts')
                 }
-            }, {
-                test: /\.html$/,
-                use: [
-                    {
-                        loader: 'html-loader',
-                        options: {
-                            minimize: true
-                        }
-                    }
-                ]
             }
         ]
     }

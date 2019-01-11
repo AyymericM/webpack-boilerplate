@@ -23,11 +23,12 @@
     "url-loader": "^1.1.2",
     "webpack": "^4.28.3",
     "webpack-cli": "^3.2.1",
-    "webpack-dev-server": "^3.1.14"
+    "webpack-dev-server": "^3.1.14",
+    "webpack-merge": "^4.2.1"
   },
   "scripts": {
-    "build": "webpack --config config/webpack.config.js --mode=production",
-    "dev": "webpack-dev-server --config config/webpack.config.js --mode=development"
+    "build": "webpack --config config/webpack.prod.js --mode=production",
+    "dev": "webpack-dev-server --config config/webpack.dev.js --mode=development"
   },
   "keywords": [],
   "author": "AyymericM <contact@aymericm.fr>",
